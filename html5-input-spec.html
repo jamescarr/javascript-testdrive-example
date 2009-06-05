@@ -55,6 +55,11 @@ describe('placeholder attribute for an empty text input type', {
 	  $("#first_name").blur()
 	  
 	  value_of($('#first_name').val()).should_be("James")	  
+	},
+	"should not add placeholder text if the value attribute was populated":function(){
+	  target.emulateInputs();
+	  
+	  value_of($('#pre-existing-value').val()).should_not_be($('#pre-existing-value').attr('placeholder'));
 	}
 })
 
@@ -63,7 +68,7 @@ describe('placeholder attribute for an empty text input type', {
 <body>
   <div style="display:none;">
     <input type="text" placeholder="Enter your name" name="first_name" id="first_name">
-    <input type="text" placeholder="Enter your name" name="foo" id="pre-existing-value" value="Some Value">
+    <input type="text" placeholder="Some Foo Stuff" name="foo" id="pre-existing-value" value="Some Value">
   </div>
 </body>
 </html>
