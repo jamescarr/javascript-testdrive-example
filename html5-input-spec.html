@@ -10,7 +10,7 @@
 <script type="text/javascript" src="library/diff_match_patch.js"></script>
 <script type="text/javascript" src="library/JSSpec.js"></script>
 <script type="text/javascript">// <![CDATA[
-describe('placeholder attribute for text type', {
+describe('placeholder attribute for an empty text input type', {
   "before":function(){
     target = new carrcraft.Html5Emulator();
   },
@@ -20,13 +20,29 @@ describe('placeholder attribute for text type', {
     target.emulateInputs();
     
     value_of($('#first_name').val()).should_be(expectedValue)
-	}
+	},
 	"should set the value to blank on focus": function() {
     target.emulateInputs();
     
     $('#first_name').focus()
     
     value_of($('#first_name').val()).should_be("")
+	},
+	'should not blank the field on focus if it contains user provided input': function(){
+	  target.emulateInputs();
+	  
+	  $("#first_name").val("James Carr")
+    $('#first_name').focus()
+    	  
+    value_of($('#first_name').val()).should_be("James Carr")	  
+	},
+	"should reset the input value to the placeholder text if it is empty on blur":function(){
+	  target.emulateInputs();
+	  
+    $('#first_name').focus()
+	  $("#first_name").blur()
+	  
+	  value_of($('#first_name').val()).should_be($("#first_name").attr('placeholder'))	  
 	}
 })
 
