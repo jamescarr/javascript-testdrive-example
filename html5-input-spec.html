@@ -14,14 +14,21 @@ describe('placeholder attribute for text type', {
   "before":function(){
     target = new carrcraft.Html5Emulator();
   },
-  "should default the value of the input to it's value": function() {
+	"should default the value of the input to it's value": function() {
     var expectedValue = $("#first_name").attr('placeholder')
-
+    
     target.emulateInputs();
-
+    
     value_of($('#first_name').val()).should_be(expectedValue)
-  }
-});
+	}
+	"should set the value to blank on focus": function() {
+    target.emulateInputs();
+    
+    $('#first_name').focus()
+    
+    value_of($('#first_name').val()).should_be("")
+	}
+})
 
 // ]]></script>
 </head>
