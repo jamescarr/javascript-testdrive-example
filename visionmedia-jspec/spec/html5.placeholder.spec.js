@@ -10,7 +10,7 @@ describe 'Html5 Emulator'
       emulator = new carrcraft.Html5Emulator()
       emulator.emulateInputs(input)      
       
-      field_with_placeholder.should.have_value 'Enter your name'
+      field_with_placeholder.should.have_value 'Enter yourz name'
     end
   end
 end

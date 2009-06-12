@@ -1,8 +1,0 @@
-{
-    "name": "inspec",
-    "version": {
-        "label": "0.1",
-        "numeric": [0,1],
-        "status": "development"
-    }
-}
