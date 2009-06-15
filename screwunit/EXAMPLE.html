@@ -1,0 +1,114 @@
+<html>
+  <!--
+    This file is a fully-functioning example test case. Try opening this file in Firefox, Safari,
+    or Internet Explorer to see what a running test looks like.
+    This file demonstrates the components involved in writing a simple test, such as:
+      * The necessary HTML to run a test (with the required <script> and <link rel="stylesheet"> tags),
+      * A "custom matcher" (i.e., a custom assertion) to make your tests more readable,
+      * And, a simple test with the necessary boiler-plate code to get you up and running.
+    Typically, these components are separated out into multiple files. To see what a more typical suite
+    of tests look like, look at the larger example in the examples/ directory.
+  -->
+  <head>
+    <!-- These are all of the necessary javascript and css files required to run your tests -->
+    <script src="lib/jquery-1.2.6.js"></script>
+    <script src="lib/jquery.fn.js"></script>
+    <script src="lib/jquery.print.js"></script>
+    <script src="lib/screw.builder.js"></script>
+    <script src="lib/screw.matchers.js"></script>
+    <script src="lib/screw.events.js"></script>
+    <script src="lib/screw.behaviors.js"></script>
+    <link rel="stylesheet" href="lib/screw.css">
+    
+    <script type="text/javascript">
+      // Here is the system under test (SUT)--that is, your application code that you would like
+      // to test.
+      function Html5Emulator(){
+
+      }
+
+      Html5Emulator.prototype.emulatePlaceholders = function(dom){
+        $('input', dom).each(function(){
+          $(this).val($(this).attr('placeholder'))
+          $(this).focus(function(){
+            $(this).val('')
+          }).blur(function(){
+            var value = $(this).val();
+            if(value == ''){
+              $(this).val($(this).attr('placeholder'))
+            }
+          });
+        });
+      }
+
+
+
+    </script>
+    
+    <script type="text/javascript">
+      // Here is a Custom Matcher. A custom matcher is a custom assertion,
+      // tailored to your application; these help to make your tests more readable.
+      Screw.Matchers["be_even"] = {
+        match: function(expected, actual) {
+          return actual % 2 == 0;
+        },
+        failure_message: function(expected, actual, not) {
+          return 'expected ' + $.print(actual) + (not ? ' not' : '') + ' to be even';
+        }
+      }
+    </script>
+    
+    <script type="text/javascript">
+      
+      // Here is a sample test. Note that all tests are wrapped in
+      // "Screw.Unit(function() { ... })".
+      Screw.Unit(function() {
+        // Tests are organized into 'describes' and 'its', following the style of RSpec.
+        describe("Html5 Placeholder", function() {
+          var sandbox = null;
+          var emulator = null;
+          var input = null;
+          before(function(){
+            sandbox = $('<div id="sandbox"></div>');
+            sandbox.append("<input id='name' type='text' placeholder='Enter Name'>")
+            emulator = new Html5Emulator();
+            input = $('#name', sandbox);
+          });
+          it("should populate value with placeholder text", function() {              
+            emulator.emulatePlaceholders(sandbox);
+            
+            expect($('#name', sandbox).val()).to(equal, "Enter Name");
+          });
+          
+          it("should blank the placeholder text on focus", function() {
+            emulator.emulatePlaceholders(sandbox);
+            
+            input.focus();
+            
+            expect(input.val()).to(be_empty);
+          });
+          
+          it("should return the placeholder text if the value is empty", function() {
+            emulator.emulatePlaceholders(sandbox);
+            
+            input.focus();
+            input.blur();
+            
+            expect(input.val()).to(equal, "Enter Name");
+          });
+          
+          it("shouldn't return the placeholder text if the value is non-empty", function() {
+            emulator.emulatePlaceholders(sandbox);
+            
+            input.focus();
+            input.val("foo")
+            input.blur();
+            
+            expect(input.val()).to(equal, "foo");
+          });
+        });
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
