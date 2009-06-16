@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" id="html">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Test Title Goes Here</title>
+    <link rel="Stylesheet" media="screen" href="testsuite.css"/>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jqUnit.js"></script>
+       <script type="text/javascript" src="lib/html5.placeholder.js"></script>
+    <script>
+    
+with (jqUnit) {
+	module('Html5Emulator');
+  var dom = $('<div></div>');
+  dom.append("<input type='text' value='' placeholder='Hello' id='foo'>");
+  var input = $('#foo', dom);
+  var emu = new Html5Emulator();
+  
+	test('Populates placeholder text in value attribute', function(){	 
+		 emu.emulatePlaceholders(dom);
+		 
+		 equals(input.val(), "Hello");
+	});
+	test('Blanks value on focus', function(){
+		 emu.emulatePlaceholders(dom);
+		 
+		 input.focus();
+		 
+		 equals(input.val(), "");
+	});
+	test('Replaces value on blur if value is empty', function(){
+		 emu.emulatePlaceholders(dom);
+		 
+		 input.focus();
+		 input.blur();
+		 
+		 equals(input.val(), "Hello");
+	});
+	test('Does not replace value on blur if value is different', function(){
+		 emu.emulatePlaceholders(dom);
+		 
+		 input.focus();
+		 input.val("Foobarbaz")
+		 input.blur();
+		 
+		 equals(input.val(), "Foobarbaz");
+	});
+	test('If value is set does not blank on focus', function(){
+		 emu.emulatePlaceholders(dom);
+		 
+		 input.val("Foobarbaz")
+		 input.focus();
+		 
+		 equals(input.val(), "Foobarbaz");
+	});
+}(jQuery);
+    </script>
+  </head>
+  <body id="body">
+    <h1 id="header">Test Title Goes Here</h1>
+		
+    <h2 id="banner"></h2>
+		
+    <h2 id="userAgent"></h2>
+		
+    <!-- Test HTML -->
+    <div id="main" style="display: none;">
+      <form id="test-form">
+        <input/>
+      </form>
+      <div id="ajax">
+        
+      </div>
+    </div>
+    <ol id="tests"></ol>
+  </body>
+</html>
