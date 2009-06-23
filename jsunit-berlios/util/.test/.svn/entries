@@ -1,0 +1,41 @@
+8
+
+dir
+267
+svn+ssh://svn.berlios.de/svnroot/repos/jsunit/tags/JsUnit_1-3/jsunit/util/.test
+svn+ssh://svn.berlios.de/svnroot/repos/jsunit
+
+
+
+2002-12-19T23:18:41.000000Z
+137
+joehni
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d4f5e813-a214-0410-99c4-8f31caba3383
+
+demo.js
+file
+
+
+
+
+2007-10-19T20:54:25.000000Z
+052f19916b389a920f0a409477f2f60f
+2002-12-19T23:18:41.000000Z
+137
+joehni
+has-props
+

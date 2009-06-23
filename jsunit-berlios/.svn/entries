@@ -1,0 +1,62 @@
+8
+
+dir
+267
+svn+ssh://svn.berlios.de/svnroot/repos/jsunit/tags/JsUnit_1-3/jsunit
+svn+ssh://svn.berlios.de/svnroot/repos/jsunit
+
+
+
+2007-10-19T20:53:52.542563Z
+266
+joehni
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d4f5e813-a214-0410-99c4-8f31caba3383
+
+contrib
+dir
+
+java
+dir
+
+tests
+dir
+
+samples
+dir
+
+conf
+dir
+
+lib
+dir
+
+pom.xml
+file
+
+
+
+
+2007-10-19T20:54:25.000000Z
+86284aefd413f24af7c1dd77a9dcb5f5
+2007-10-19T20:53:52.542563Z
+266
+joehni
+has-props
+
+util
+dir
+
