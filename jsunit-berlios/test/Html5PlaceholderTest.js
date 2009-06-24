@@ -7,7 +7,8 @@ Html5EmulatorTest.prototype.setUp = function(){
   var sandbox = $('<div></div>')
   this.emulator = new Html5Emulator(sandbox);
   this.PLACEHOLDER_TEXT = "placeholder text is here";
-  this.input = sandbox.append('<input type="text" value="" placeholder="'+this.PLACEHOLDER_TEXT+'"');
+   sandbox.append('<input id="foo" type="text" value="" placeholder="'+this.PLACEHOLDER_TEXT+'"');
+   this.input = $('#foo', sandbox);
 }
 Html5EmulatorTest.prototype.testValueIsPopulatedByPlaceholder = function(){
   this.emulator.emulatePlaceholders();
