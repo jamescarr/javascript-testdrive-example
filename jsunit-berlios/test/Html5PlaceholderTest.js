@@ -16,4 +16,38 @@ Html5EmulatorTest.prototype.testValueIsPopulatedByPlaceholder = function(){
   this.assertEquals(this.PLACEHOLDER_TEXT, this.input.val());
 }
 
+Html5EmulatorTest.prototype.testValueIsBlankedOnFocus = function(){
+  this.emulator.emulatePlaceholders();
+  
+  this.input.focus()
+  
+  this.assertEquals("", this.input.val());
+}
 
+Html5EmulatorTest.prototype.testValueIsNotBlankedOnFocusIfNotPlaceholder = function(){
+  this.emulator.emulatePlaceholders();
+  
+  this.input.val("Foobar")
+  this.input.focus()
+  
+  this.assertEquals("Foobar", this.input.val());
+}
+
+Html5EmulatorTest.prototype.testPlaceholderIsReturnedOnBlur = function(){
+  this.emulator.emulatePlaceholders();
+  
+  this.input.focus()
+  this.input.blur()
+  
+  this.assertEquals(this.PLACEHOLDER_TEXT, this.input.val());
+}
+
+Html5EmulatorTest.prototype.testPlaceholderIsNotReturnedOnBlurIfNonEmptyValue = function(){
+  this.emulator.emulatePlaceholders();
+  
+  this.input.focus()
+  this.input.val("hello")
+  this.input.blur()
+  
+  this.assertEquals("hello", this.input.val());
+}
